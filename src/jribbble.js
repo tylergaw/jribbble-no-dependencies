@@ -55,7 +55,6 @@ var jribbble;
 
         // Looking for the paging options so we can add them to the query string
         if (args.length > 1) {
-            var str = '';
             for (var opt in args[1]) {
                 url += '&' + opt + '=' + args[1][opt];
             }
