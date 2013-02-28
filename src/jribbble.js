@@ -53,6 +53,14 @@ var jribbble;
             callbackName = 'jribbble_' + new Date().getTime(),
             url = 'http://api.dribbble.com' + path + '?callback=' + callbackName;
 
+        // Looking for the paging options so we can add them to the query string
+        if (args.length > 1) {
+            var str = '';
+            for (var opt in args[1]) {
+                url += '&' + opt + '=' + args[1][opt];
+            }
+        }
+
         window[callbackName] = function (data) {
             if (typeof (data) === 'undefined') {
                 args[0]({error: true});
@@ -70,22 +78,6 @@ var jribbble;
         document.getElementsByTagName('head')[0].appendChild(script);
     };
 
-    // Working on this for the paging options
-    // parametersToString = function (parameters, encodeURI) {
-    //     var str = "",
-    //         key,
-    //         parameter;
-
-    //     for (key in parameters) {
-    //         if (parameters.hasOwnProperty(key)) {
-    //             key = encodeURI ? encodeURIComponent(key) : key;
-    //             parameter = encodeURI ? encodeURIComponent(parameters[key]) : parameters[key];
-    //             str += key + "=" + parameter + "&";
-    //         }
-    //     }
-    //     return str.replace(/&$/, "");
-    // };
-
     var methods = {
         'getShotById': '/shots/$/',
         'getReboundsOfShot': '/shots/$/rebounds/',
@@ -100,17 +92,21 @@ var jribbble;
         'getShotsThatPlayerLikes': '/players/$/shots/likes/'
     };
 
+    var createAPIMethod = function (urlPattern) {
+        return function () {
+            var // Convert arguments to a real Array
+                args = [].slice.call(arguments),
+
+                // We run shift() on args here because we don't need to send
+                // the first argument to jsonpGET.
+                url = urlPattern.replace('$', args.shift());
+
+            jsonpGET(url, args);
+        };
+    };
+
     for (var method in methods) {
-        exports[method] = function () {
-            var slug = methods[method];
-
-            return function () {
-                var args = [].slice.call(arguments),
-                    url = slug.replace('$', args.shift());
-
-                jsonpGET(url, args);
-            };
-        }();
+        exports[method] = createAPIMethod(methods[method]);
     }
 
     return exports;
