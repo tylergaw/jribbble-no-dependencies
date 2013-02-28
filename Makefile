@@ -7,12 +7,12 @@ DIST_DIR = ${PREFIX}/dist
 JB_VER = $(shell cat version.txt)
 
 JS_ENGINE ?= `which node nodejs`
-UGLIFIER = $(shell uglifyjs -o ${JB_MIN} ${JB})
+UGLIFIER = $(shell uglifyjs -o ${JB_MIN} ${JB} -c -m)
 
 BASE_FILES = ${SRC_DIR}/jribbble.js
 
-JB = ${DIST_DIR}/jquery.jribbble-${JB_VER}.js
-JB_MIN = ${DIST_DIR}/jquery.jribbble-${JB_VER}.ugly.js
+JB = ${DIST_DIR}/jribbble-no-dep-${JB_VER}.js
+JB_MIN = ${DIST_DIR}/jribbble-no-dep-${JB_VER}.ugly.js
 
 VER = sed "s/@VERSION/${JB_VER}/"
 

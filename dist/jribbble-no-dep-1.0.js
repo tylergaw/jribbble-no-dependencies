@@ -1,5 +1,5 @@
 /**
- * Jribbble v@VERSION
+ * Jribbble v1.0
  * A jQuery-free version of the JavaScript Dribbble API wrapper
  * http://dribbble.com/api
  *
@@ -25,7 +25,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  *
- * Build Date: @DATE
+ * Build Date: Thu Feb 28 09:14:50 2013 -0500
  *
  */
 var jribbble;
