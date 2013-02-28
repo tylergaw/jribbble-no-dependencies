@@ -8,9 +8,23 @@
 <body>
     <a href="index.html">Examples</a>
     <h1>getShotById</h1>
+
+    <div id="shot"></div>
+
     <script>
         var callback = function (shot) {
-            console.log(shot);
+            var html = '';
+
+            html += '<a href="' + shot.url + '"><img src="' + shot.image_url + '"></a>';
+            html += '<h3>' + shot.title + '</h3>';
+            html += '<i>by <a href="' + shot.player.url + '">' + shot.player.name + '</a></i>';
+
+            html += '<ul><li><b>Views:</b> ' + shot.views_count + '</li>';
+            html += '<li><b>Likes:</b> ' + shot.likes_count + '</li>';
+            html += '<li><b>Comments:</b> ' + shot.comments_count + '</li>';
+            html += '<li><b>Rebounds:</b> ' + shot.rebounds_count + '</li></ul>';
+
+            document.getElementById('shot').innerHTML = html;
         };
 
         jribbble.getShotById('914651', callback);
