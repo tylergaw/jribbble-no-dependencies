@@ -13,3 +13,6 @@ date to the output files then creates the Ugly version of Jribbble using [Uglify
 NodeJS is required to build an Ugly version of Jribbble.
 
 To build navigate to the Jribbble directory and run the `make` command
+
+## Credit where it's due
+I used ~93.2% of the GET portion of https://github.com/alotaiba/FlyJSONP
