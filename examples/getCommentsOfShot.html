@@ -8,13 +8,44 @@
     <a href="index.html">Examples</a>
     <h1>getCommentsOfShot</h1>
 
+    <div id="shot"></div>
+
+    <div id="comments">
+        <h3>Comments</h3>
+        <ul></ul>
+    </div>
+
     <script src="../dist/jribbble-no-dep-1.0.0.js"></script>
     <script>
-        var callback = function (shot) {
-            console.log(shot);
+        var getShotCallback = function (shot) {
+            var html = '';
+
+            html += '<h2>' + shot.title + ' ';
+            html += '<i>by <a href="' + shot.player.url + '">' + shot.player.name + '</a></i></h2>';
+            html += '<a href="' + shot.url + '"><img src="' + shot.image_url + '"></a>';
+
+            document.getElementById('shot').innerHTML = html;
         };
 
-        jribbble.getCommentsOfShot('944850', callback, {per_page: 50});
+        jribbble.getShotById(953794, getShotCallback);
+
+        var getCommentsCallback = function (res) {
+            var html = '',
+                heading = document.querySelector('#comments h3');
+
+            heading.textContent = res.comments.length + ' ' + heading.textContent;
+
+            res.comments.forEach(function (comment) {
+                html += '<li>';
+                html += '<a href="' + comment.player.url + '"><h5>' + comment.player.name + '</h5></a>';
+                html += '<p>' + comment.body + '</p>';
+                html += '</li>';
+            });
+
+            document.querySelector('#comments ul').innerHTML = html;
+        };
+
+        jribbble.getCommentsOfShot(953794, getCommentsCallback, {per_page: 5, page: 1});
     </script>
 </body>
 </html>
