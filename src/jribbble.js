@@ -48,9 +48,26 @@ var jribbble;
 
     var exports = {};
 
+    //Thanks to Kevin Hakanson
+    //http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript/873856#873856
+    var uuid = function () {
+        var s = [],
+            hexDigits = '0123456789ABCDEF',
+            i = 0;
+
+        for (i = 0; i < 32; i += 1) {
+            s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+        }
+
+        s[12] = '4';  // bits 12-15 of the time_hi_and_version field to 0010
+        s[16] = hexDigits.substr((s[16] & 0x3) | 0x8, 1);  // bits 6-7 of the clock_seq_hi_and_reserved to 01
+
+        return s.join('');
+    };
+
     var jsonpGET = function (path, args) {
         var script = document.createElement('script'),
-            callbackName = 'jribbble_' + new Date().getTime(),
+            callbackName = 'jribbble_' + uuid(),
             url = 'http://api.dribbble.com' + path + '?callback=' + callbackName;
 
         // Looking for the paging options so we can add them to the query string
