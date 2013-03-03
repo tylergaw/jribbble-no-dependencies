@@ -8,13 +8,27 @@
     <a href="index.html">Examples</a>
     <h1>getShotsByPlayerId</h1>
 
+    <h2>Player: <b></b></h2>
+    <ul id="shotsByPlayerId"></ul>
+
     <script src="../dist/jribbble-no-dep-1.0.0.js"></script>
     <script>
-        var callback = function (shot) {
-            console.log(shot);
+        var callback = function (playerShots) {
+            var html = '';
+
+            document.querySelector('h2 b').textContent = playerShots.shots[0].player.name;
+
+            playerShots.shots.forEach(function (shot) {
+                html += '<li><h3>' + shot.title + '</h3>';
+                html += '<a href="' + shot.url + '">';
+                html += '<img src="' + shot.image_url + '" ';
+                html += 'alt="' + shot.title + '"></a></li>';
+            });
+
+            document.getElementById('shotsByPlayerId').innerHTML = html;
         };
 
-        jribbble.getShotsByPlayerId('tylergaw', callback, {per_page: 20});
+        jribbble.getShotsByPlayerId('tykoe', callback, {page: 1, per_page: 8});
     </script>
 </body>
 </html>
