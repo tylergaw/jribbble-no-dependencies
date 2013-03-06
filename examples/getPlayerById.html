@@ -8,10 +8,21 @@
     <a href="index.html">Examples</a>
     <h1>getPlayerById</h1>
 
+    <div id="playerProfile"></div>
+
     <script src="../dist/jribbble-no-dep-1.0.0.js"></script>
     <script>
-        var callback = function (shot) {
-            console.log(shot);
+        var callback = function (player) {
+            var html = '';
+            html += '<a href="' + player.url + '"><img src="' + player.avatar_url + '" alt=""></a>';
+            html += '<div><h3>' + player.name + ' / ' + player.location + '</h3>';
+            html += '<h4><a href="' + player.url + '">' + player.url + '</a></h4>';
+            html += '<ul><li><b>Shots: </b>' + player.shots_count + '</li>';
+            html += '<li><b>Following: </b>' + player.following_count + '</li>';
+            html += '<li><b>Followers: </b>' + player.followers_count + '</li>';
+            html += '<li><b>Draftees: </b>' + player.draftees_count + '</li></ul></div>';
+
+            document.getElementById('playerProfile').innerHTML = html;
         };
 
         jribbble.getPlayerById('tylergaw', callback);

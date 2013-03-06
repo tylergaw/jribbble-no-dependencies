@@ -8,13 +8,24 @@
     <a href="index.html">Examples</a>
     <h1>getPlayerDraftees</h1>
 
+    <ul id="playerDraftees"></ul>
+
     <script src="../dist/jribbble-no-dep-1.0.0.js"></script>
     <script>
-        var callback = function (shot) {
-            console.log(shot);
+        var callback = function (draftees) {
+            var html = '';
+
+            draftees.players.forEach(function (player) {
+                html += '<li><h3>' + player.name + '</h3>';
+                html += '<a href="' + player.url + '">';
+                html += '<img src="' + player.avatar_url + '" ';
+                html += 'alt=""></a></li>';
+            });
+
+            document.getElementById('playerDraftees').innerHTML = html;
         };
 
-        jribbble.getPlayerDraftees('tylergaw', callback);
+        jribbble.getPlayerDraftees('cameronmoll', callback, {per_page: 10});
     </script>
 </body>
 </html>

@@ -8,13 +8,24 @@
     <a href="index.html">Examples</a>
     <h1>getPlayerFollowers</h1>
 
+    <ul id="playerFollowers"></ul>
+
     <script src="../dist/jribbble-no-dep-1.0.0.js"></script>
     <script>
-        var callback = function (shot) {
-            console.log(shot);
+        var callback = function (followers) {
+            var html = '';
+
+            followers.players.forEach(function (player) {
+                html += '<li><h3>' + player.name + '</h3>';
+                html += '<a href="' + player.url + '">';
+                html += '<img src="' + player.avatar_url + '" ';
+                html += 'alt=""></a></li>';
+            });
+
+            document.getElementById('playerFollowers').innerHTML = html;
         };
 
-        jribbble.getPlayerFollowers('tylergaw', callback, {per_page: 8, page: 1});
+        jribbble.getPlayerFollowers('robertjpetro', callback, {per_page: 12});
     </script>
 </body>
 </html>
