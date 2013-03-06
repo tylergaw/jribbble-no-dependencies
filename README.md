@@ -1,7 +1,7 @@
 # Jribbble No Dependency
 A jQuery-free version of the JavaScript [Dribbble API](http://dribbble.com/api) API wrapper
 
-Live demos available at [http://lab.tylergaw.com/jribbble](http://lab.tylergaw.com/jribbble)
+Examples [http://tylergaw.github.com/jribbble-no-dependencies/](http://tylergaw.github.com/jribbble-no-dependencies/)
 
 ## Dependencies
 * None, just that purty JavaScript that runs in your favorite Web Browser.
