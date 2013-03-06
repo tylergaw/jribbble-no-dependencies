@@ -1,5 +1,5 @@
 # Jribbble No Dependency
-A jQuery-free version of the JavaScript [Dribbble API](http://dribbble.com/api) API wrapper
+A jQuery-free version of https://github.com/tylergaw/jribbble.
 
 Examples [http://tylergaw.github.com/jribbble-no-dependencies/](http://tylergaw.github.com/jribbble-no-dependencies/)
 
