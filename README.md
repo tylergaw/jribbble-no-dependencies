@@ -1,3 +1,6 @@
+# NOTE: THIS PROJECT IS DEPRECATED
+Dribbble updated their API. Use the latest Jribbble https://github.com/tylergaw/jribbble
+
 # Jribbble No Dependency
 A jQuery-free version of https://github.com/tylergaw/jribbble.
 
